@@ -1,3 +1,3 @@
-import daysFunctions as ds
+import daysFunctions as DaysFunctions
 
-ds.days_in_units(21,"seconds")
+DaysFunctions.days_in_units(21, "seconds")
