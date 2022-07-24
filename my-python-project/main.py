@@ -6,5 +6,5 @@ import userInput as UserInput
 # Using a function from imported file
 DaysFunctions.days_in_units(21, "seconds")
 
-# using input and convert it to int to calculate
+# using input from side-file function
 DaysFunctions.days_in_units(UserInput.input_days(), "minutes")
