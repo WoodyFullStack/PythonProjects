@@ -11,9 +11,9 @@ def delete_nth(order, max_e):
             new_new_order.append(new_order[x])
     print(new_new_order)
 
-delete_nth([20, 37, 20, 21, 21, 21], 1)
-delete_nth([1,1,3,3,7,2,2,2,2], 3)
 
+delete_nth([20, 37, 20, 21, 21, 21], 1)
+delete_nth([1, 1, 3, 3, 7, 2, 2, 2, 2], 3)
 
 '''Enough is enough! Alice and Bob were on a holiday. Both of them took many pictures of the places they've been, 
 and now they want to show Charlie their entire collection. However, Charlie doesn't like these sessions, 
