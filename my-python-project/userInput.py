@@ -1,2 +1,3 @@
 def input_days():
-    return input("Please write amount of days ")
+    # \n - moves blinking cursor to the next line
+    return int(input("Please enter amount of days\n"))

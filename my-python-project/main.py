@@ -7,4 +7,4 @@ import userInput as UserInput
 DaysFunctions.days_in_units(21, "seconds")
 
 # using input and convert it to int to calculate
-DaysFunctions.days_in_units(int(UserInput.input_days()), "minutes")
+DaysFunctions.days_in_units(UserInput.input_days(), "minutes")
