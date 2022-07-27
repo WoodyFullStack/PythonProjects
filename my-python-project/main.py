@@ -4,6 +4,7 @@ import daysFunctions as DaysFunctions
 import userInput as UserInput
 # Importing function to get user's input days to calculate but with try & Except block for text and float inputs
 import userInputWithTryExcept as UserInputWithTryExcept
+import inputByList as InputByList
 import MagicConst as magic
 
 
@@ -11,6 +12,7 @@ import MagicConst as magic
 print("1. Automatic input")
 print("2. Input by user with if/else statements")
 print("3. Input by user with try/except statements")
+print("4. Input with a list of days counts")
 dispatch_method_of_convert_days = int(input("Choose input method: "))
 
 # Checking chosen variant
@@ -30,3 +32,5 @@ elif dispatch_method_of_convert_days == 2:
 elif dispatch_method_of_convert_days == 3:
     # using input from function from imported file with try/except block of code
     DaysFunctions.days_in_units(UserInputWithTryExcept.input_days(), "hours")
+elif dispatch_method_of_convert_days == 4:
+    InputByList.list_of_days()
