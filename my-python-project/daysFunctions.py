@@ -1,5 +1,6 @@
 # defining a function to use in main.py
 def days_in_units(days, units_type):
+    # If we
     if days is False:
         return print("you wrote wrong count of days")
     if units_type == "hours":
