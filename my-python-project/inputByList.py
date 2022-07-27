@@ -9,13 +9,15 @@ def list_of_days():
     for x in days_count_input:
         # just trying to convert it to integer, to proper count it in hours
         try:
-            days_count_input = int(x)
+            x = int(x)
             # if it < 0 - just don't convert it
             if x >= 0:
-                DaysFunction.days_in_units(days_count_input, "hours")
+                DaysFunction.days_in_units(x, "hours")
             else:
                 wrong_inputs.append(x)
         except ValueError:
             # if it's not an integer - just don't convert it
             wrong_inputs.append(x)
-    print(f"{wrong_inputs} is incorrect values")
+    # print list with wrong inputs only if we have em.
+    if wrong_inputs:
+        print(f"{wrong_inputs} is incorrect values")
