@@ -5,7 +5,7 @@ import daysFunctions as DaysFunction
 def list_of_days():
     days_count_input = input("input a count of days to convert them to hours, with spaces between them\n")
     wrong_inputs = []
-    for x in days_count_input.split():
+    for x in set(days_count_input.split()):
         # just trying to convert it to integer, to proper count it in hours
         try:
             x = int(x)
