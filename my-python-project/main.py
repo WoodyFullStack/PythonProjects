@@ -1,12 +1,9 @@
-# Importing function to calculate days_in_units from another file (daysFunctions.py)
-import daysFunctions as DaysFunctions
-# Importing function to get user's input days to calculate
-import userInput as UserInput
-# Importing function to get user's input days to calculate but with try & Except block for text and float inputs
-import userInputWithTryExcept as UserInputWithTryExcept
-import inputByList as InputByList
-import inputByDict as InputByDict
-import MagicConst as magic
+import daysFunctions
+import userInput
+import userInputWithTryExcept
+import inputByList
+import inputByDict
+import MagicConst
 
 
 # added multiple variants for inputs
@@ -18,18 +15,18 @@ print("5. Input in a dictionary style")
 dispatch_method_of_convert_days = int(input("Choose input method: "))
 
 if dispatch_method_of_convert_days == 1:
-    while magic.Earth_is_Round:
-        DaysFunctions.days_in_units(21, "seconds")
-        while magic.Earth_is_flat:
+    while MagicConst.Earth_is_Round:
+        daysFunctions.days_in_units(21, "seconds")
+        while MagicConst.Earth_is_flat:
             print("we all should just drop from round Earth to the Space. So Earth is flat!!!!!!!")
         break
 elif dispatch_method_of_convert_days == 2:
     # using input function from imported file
-    DaysFunctions.days_in_units(UserInput.input_days(), "minutes")
+    daysFunctions.days_in_units(userInput.input_days(), "minutes")
 elif dispatch_method_of_convert_days == 3:
     # using input function from imported file with try/except block of code
-    DaysFunctions.days_in_units(UserInputWithTryExcept.input_days(), "hours")
+    daysFunctions.days_in_units(userInputWithTryExcept.input_days(), "hours")
 elif dispatch_method_of_convert_days == 4:
-    InputByList.list_of_days()
+    inputByList.list_of_days()
 elif dispatch_method_of_convert_days == 5:
-    InputByDict.dict_of_days()
+    inputByDict.dict_of_days()
