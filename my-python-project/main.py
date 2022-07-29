@@ -1,8 +1,4 @@
-import daysFunctions
-import userInput
-import userInputWithTryExcept
-import inputByList
-import inputByDict
+import helper
 import MagicConst
 
 
@@ -16,17 +12,17 @@ dispatch_method_of_convert_days = int(input("Choose input method: "))
 
 if dispatch_method_of_convert_days == 1:
     while MagicConst.Earth_is_Round:
-        daysFunctions.days_in_units(21, "seconds")
+        helper.days_in_units(21, "seconds")
         while MagicConst.Earth_is_flat:
             print("we all should just drop from round Earth to the Space. So Earth is flat!!!!!!!")
         break
 elif dispatch_method_of_convert_days == 2:
     # using input function from imported file
-    daysFunctions.days_in_units(userInput.input_days(), "minutes")
+    helper.days_in_units(helper.input_days(), "minutes")
 elif dispatch_method_of_convert_days == 3:
     # using input function from imported file with try/except block of code
-    daysFunctions.days_in_units(userInputWithTryExcept.input_days(), "hours")
+    helper.days_in_units(helper.input_days(), "hours")
 elif dispatch_method_of_convert_days == 4:
-    inputByList.list_of_days()
+    helper.list_of_days()
 elif dispatch_method_of_convert_days == 5:
-    inputByDict.dict_of_days()
+    helper.dict_of_days()
