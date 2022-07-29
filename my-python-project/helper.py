@@ -43,8 +43,7 @@ def list_of_days():
         print(f"{wrong_inputs} is incorrect values")
 
 
-def input_days():
-    # \n - moves blinking cursor to the next line
+def input_days_try_except():
     days = input("Please enter amount of days\n")
     try:
         if int(days) >= 0:

@@ -1,3 +1,4 @@
+import helper
 from helper import *
 from MagicConst import *
 
@@ -23,7 +24,7 @@ while dispatch_method_of_convert_days.lower() != "exit":
         days_in_units(input_days(), "minutes")
     elif dispatch_method_of_convert_days == "3":
         # using input function from imported file with try/except block of code
-        days_in_units(input_days(), "hours")
+        days_in_units(input_days_try_except(), "hours")
     elif dispatch_method_of_convert_days == "4":
         list_of_days()
     elif dispatch_method_of_convert_days == "5":
