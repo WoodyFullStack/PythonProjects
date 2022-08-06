@@ -5,8 +5,9 @@ from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
 driver.get("https://netmonet.co/")
-#assert "Чаевые картой по QR-коду" in driver.title
-img_elem = driver.find_element(By.XPATH, '//img[@src="https://storage.yandexcloud.net/landing-assets/stats/logos/logo_4hands.svg"]')
+# assert "abra-cadabra" in driver.title
+img_elem = driver.find_element(By.XPATH, '//img[@src="https://storage.yandexcloud.net/landing-assets/stats/logos'
+                                         '/logo_4hands.svg"]')
 print(img_elem.get_attribute('style'))
 assert "opacity: 1" in img_elem.get_attribute("style")
 btn_elem = driver.find_element(By.XPATH, '//input[@type="checkbox"]')
