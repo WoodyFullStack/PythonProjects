@@ -1,6 +1,5 @@
 """This module does blah blah."""
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome()
@@ -20,13 +19,3 @@ def test_2():
 
 def test_close_chrome():
     driver.close()
-
-
-"""
-elem.clear()
-elem.send_keys("pycon")
-elem.send_keys(Keys.ENTER)
-assert "No results found." not in driver.page_source
-for cookie in driver.get_cookies():
-print(cookie)
-"""
