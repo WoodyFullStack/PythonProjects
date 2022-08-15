@@ -7,6 +7,7 @@ This module does next things
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 
 def get_list_of_items(filepath):
@@ -22,7 +23,10 @@ def get_desc_and_prices():
     Get prices from URLs
     :return: nothing ATM
     """
-    driver = webdriver.Chrome()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=1920,1080")
+    driver = webdriver.Chrome(options=chrome_options)
     for item in get_list_of_items('cart.txt'):
         driver.get(item)
         driver.implicitly_wait(10)
