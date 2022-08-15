@@ -5,7 +5,7 @@ This module does next things
 2.1 Maybe should use Beautifulsoup for that
 """
 
-import selenium.webdriver
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
@@ -22,15 +22,14 @@ def get_desc_and_prices():
     Get prices from URLs
     :return: nothing ATM
     """
+    driver = webdriver.Chrome()
     for item in get_list_of_items('cart.txt'):
-        driver = selenium.webdriver.Chrome()
         driver.get(item)
         driver.implicitly_wait(10)
-        price = driver.find_elements(By.CSS_SELECTOR,
-                                     '#pc-8sSL > div.product-card-top.product-card-top_full > '
-                                     'div.product-card-top__buy > div.product-buy.product-buy_one-line > div > '
-                                     'div.product-buy__price')
-        print(price)
+        price = driver.find_element(By.XPATH, '//div[@class="product-buy__price"]')
+        desc = driver.find_element(By.XPATH, '//div[@class="product-card-top__specs"]')
+        print(f"Товар {desc.text} стоит {price.text}ублей")
+    driver.close()
 
 
 get_desc_and_prices()
