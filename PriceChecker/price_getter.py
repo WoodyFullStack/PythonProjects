@@ -23,10 +23,10 @@ def get_desc_and_prices():
     Get prices from URLs
     :return: nothing ATM
     """
-    chrome_options = Options()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--window-size=1920,1080")
-    driver = webdriver.Chrome(options=chrome_options)
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--window-size=1920,1080")
+    driver = webdriver.Chrome(options=options)
     for item in get_list_of_items('cart.txt'):
         driver.get(item)
         driver.implicitly_wait(10)
