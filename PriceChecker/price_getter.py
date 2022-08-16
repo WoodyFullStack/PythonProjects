@@ -9,10 +9,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
+DRIVER_PATH = 'driver/chromedriver.exe'
 options = Options()
 options.add_argument("--headless")
 options.add_argument("--window-size=1920,1080")
-driver = webdriver.Chrome(options=options)
+driver = webdriver.Chrome(DRIVER_PATH, options=options)
 price_locator = '//div[@class="product-buy__price"]'
 desc_locator = '//h1[@class="product-card-top__title"]'
 
@@ -39,5 +40,6 @@ def get_desc_and_prices():
         price = driver.find_element(By.XPATH, price_locator)
         desc = driver.find_element(By.XPATH, desc_locator)
         list_of_items[item] = [desc.text, price.text[0:-2]]
+    driver.implicitly_wait(2)
     driver.close()
     return list_of_items
