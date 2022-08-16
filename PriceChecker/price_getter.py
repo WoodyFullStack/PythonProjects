@@ -35,11 +35,9 @@ def get_desc_and_prices():
     list_of_items = {}
     for item in get_list_of_items('cart.txt'):
         driver.get(item)
-        driver.implicitly_wait(5)
+        driver.implicitly_wait(10)
         price = driver.find_element(By.XPATH, price_locator)
         desc = driver.find_element(By.XPATH, desc_locator)
         list_of_items[item] = [desc.text, price.text[0:-2]]
     driver.close()
     return list_of_items
-
-print(get_desc_and_prices())

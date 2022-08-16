@@ -1,0 +1,5 @@
+import price_getter
+import spreadsheet_processor
+
+list_of_items = price_getter.get_desc_and_prices()
+spreadsheet_processor.save_prices_to_table(list_of_items)
