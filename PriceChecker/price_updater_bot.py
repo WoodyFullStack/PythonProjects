@@ -1,7 +1,3 @@
-import Token
-import price_getter
-import price_processor
-
 """
 Simple Bot to reply to Telegram messages.
 
@@ -14,8 +10,11 @@ Basic Echobot example, repeats messages.
 Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
-
+import Token
+import price_getter
+import price_processor
 import logging
+
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -31,6 +30,7 @@ logger = logging.getLogger(__name__)
 def start(update, context):
     """Send a message when the command /start is issued."""
     update.message.reply_text('Hi')
+
 
 def my_id(update, context):
     """Send a message when the command /my_id is issued."""
@@ -55,11 +55,12 @@ def error(update, context):
 def price_check(context):
     items = price_processor.check_prices()
     if not items:
-        context.bot.send_message(chat_id=Token.user_id, text='За прошедший день цены не менялись')
+        context.bot.send_message(chat_id=Token.user_id, text="Prices doesn't changed")
     else:
         for item in range(len(items)):
             context.bot.send_message(chat_id=Token.user_id, text=items[item])
             context.bot.send_message(chat_id=593393716, text=items[item])
+
 
 def favourites_list(update, context):
     items_list = price_getter.get_list_of_items('cart.txt')
@@ -84,7 +85,7 @@ def main():
     dp.add_handler(CommandHandler("my_id", my_id))
     dp.add_handler(CommandHandler("my_list", favourites_list))
 
-    # on noncommand i.e message - echo the message on Telegram
+    # on noncommand i.e. message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
 
     j = updater.job_queue
