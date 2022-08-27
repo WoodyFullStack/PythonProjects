@@ -8,6 +8,7 @@ This module does next things
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from file_processor import get_list_of_items
 
 DRIVER_PATH = 'driver/chromedriver.exe'
 options = Options()
@@ -18,15 +19,7 @@ price_locator = '//div[@class="product-buy__price"]'
 desc_locator = '//h1[@class="product-card-top__title"]'
 
 
-def get_list_of_items(filepath):
-    """Just get a list of URLs of the items """
-    file = open(filepath, 'r', encoding='UTF-8')
-    items = file.read().split(',')
-    file.close()
-    return items
-
-
-def get_desc_and_prices():
+def dns_get_desc_and_prices(user_id):
     """
     Get prices from URLs
     Do it silently by using --headless argument
@@ -34,7 +27,7 @@ def get_desc_and_prices():
     :return: list of items in format {url:[item_description, item_price]}
     """
     list_of_items = {}
-    for item in get_list_of_items('cart.txt'):
+    for item in get_list_of_items(user_id):
         driver.get(item)
         driver.implicitly_wait(10)
         price = driver.find_element(By.XPATH, price_locator)

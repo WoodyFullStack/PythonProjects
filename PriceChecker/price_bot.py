@@ -10,9 +10,9 @@ Basic Echobot example, repeats messages.
 Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
+
 import Token
-import price_getter
-import price_processor
+from bot_helper import *
 import logging
 
 
@@ -24,12 +24,12 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
 def start(update, context):
     """Send a message when the command /start is issued."""
     update.message.reply_text('Hi')
+    bot_register(update.message.chat_id)
 
 
 def my_id(update, context):
@@ -52,8 +52,8 @@ def error(update, context):
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
 
-def price_check(context):
-    items = price_processor.check_prices()
+def price_check(update, context):
+    items = bot_check_price(update.message.chat_id)
     if not items:
         context.bot.send_message(chat_id=Token.user_id, text="Prices doesn't changed")
     else:
@@ -63,10 +63,13 @@ def price_check(context):
 
 
 def favourites_list(update, context):
-    items_list = price_getter.get_list_of_items('cart.txt')
+    items_list = bot_get_list(update.message.chat_id)
     message = ''
-    for item in items_list:
-        message = message + item +'\n'
+    if items_list != ['']:
+        for item in items_list:
+            message = message + item +'\n'
+    else:
+        message = 'Your list is empty'
     update.message.reply_text(message)
 
 
@@ -84,12 +87,10 @@ def main():
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("my_id", my_id))
     dp.add_handler(CommandHandler("my_list", favourites_list))
+    dp.add_handler(CommandHandler("price_check", favourites_list))
 
     # on noncommand i.e. message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
-
-    j = updater.job_queue
-    j.run_once(price_check, 10)
 
     # log all errors
     dp.add_error_handler(error)
