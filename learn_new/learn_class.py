@@ -3,7 +3,7 @@ class SuperParentClass:
         print(argument)
 
 
-class my_first_class(SuperParentClass):
+class MyFirstClass(SuperParentClass):
     """This class about public and private attributes"""
     x = 1
     _y = 2
@@ -17,7 +17,7 @@ class my_first_class(SuperParentClass):
         return self._y
 
 
-my_first_object = my_first_class()
+my_first_object = MyFirstClass()
 # print public class attribute
 print(my_first_object.x)
 # print protected class attribute
