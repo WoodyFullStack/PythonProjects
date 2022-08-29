@@ -10,9 +10,9 @@ URL_COL = 2
 DESCRIPTION_COL = 3
 
 
-def save_prices_to_table(list_of_items):
+def save_prices_to_table(user_id,list_of_items):
     """Parse incoming dictionary with list of items {'URL to item':[item_description, item price in Rubles])"""
-    wb = openpyxl.load_workbook(SPREADSHEET)
+    wb = openpyxl.load_workbook(f'prices/{str(user_id)}/{SPREADSHEET}')
     sheet = wb.active
 
     max_col = sheet.max_column
@@ -31,7 +31,7 @@ def save_prices_to_table(list_of_items):
 
 def compare_prices_with_the_past():
     """Check that prices in new colon is lower than prices in previous colon"""
-    wb = openpyxl.load_workbook(SPREADSHEET)
+    wb = openpyxl.load_workbook(f'prices/{str(user_id)}/{SPREADSHEET}')
     sheet = wb.active
     difference = []
     max_col = sheet.max_column
