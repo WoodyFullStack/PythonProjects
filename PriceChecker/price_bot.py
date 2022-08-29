@@ -15,7 +15,6 @@ import Token
 from bot_helper import *
 import logging
 
-
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Enable logging
@@ -23,6 +22,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 logger = logging.getLogger(__name__)
+
 
 # Define a few command handlers. These usually take the two arguments update and
 # context. Error handlers also receive the raised TelegramError object in error.
@@ -55,11 +55,10 @@ def error(update, context):
 def price_check(update, context):
     items = bot_check_price(update.message.chat_id)
     if not items:
-        context.bot.send_message(chat_id=Token.user_id, text="Prices doesn't changed")
+        context.bot.send_message(chat_id=update.message.chat_id, text="Prices doesn't changed")
     else:
         for item in range(len(items)):
-            context.bot.send_message(chat_id=Token.user_id, text=items[item])
-            context.bot.send_message(chat_id=593393716, text=items[item])
+            context.bot.send_message(chat_id=update.message.chat_id, text=items[item])
 
 
 def favourites_list(update, context):
@@ -67,7 +66,7 @@ def favourites_list(update, context):
     message = ''
     if items_list != ['']:
         for item in items_list:
-            message = message + item +'\n'
+            message = message + item + '\n'
     else:
         message = 'Your list is empty'
     update.message.reply_text(message)
@@ -87,7 +86,7 @@ def main():
     dp.add_handler(CommandHandler("help", help))
     dp.add_handler(CommandHandler("my_id", my_id))
     dp.add_handler(CommandHandler("my_list", favourites_list))
-    dp.add_handler(CommandHandler("price_check", favourites_list))
+    dp.add_handler(CommandHandler("price_check", price_check))
 
     # on noncommand i.e. message - echo the message on Telegram
     dp.add_handler(MessageHandler(Filters.text, echo))
