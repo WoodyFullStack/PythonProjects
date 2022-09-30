@@ -38,15 +38,17 @@ def compare_prices_with_the_past(user_id):
     max_row = sheet.max_row
 
     for item in range(0, max_row - FIRST_ITEM_ROW + 1):
-        if sheet.cell(FIRST_ITEM_ROW + item, max_col).value < sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value:
-            difference.append(f'Price for {sheet.cell(FIRST_ITEM_ROW + item, DESCRIPTION_COL).value} now is lower. \n'
-                             f'Previous Price {sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value} \n'
-                             f'New Price {sheet.cell(FIRST_ITEM_ROW + item, max_col).value} \n'
-                             f'Link to the Store: {sheet.cell(FIRST_ITEM_ROW + item, URL_COL).value})')
-        elif sheet.cell(FIRST_ITEM_ROW + item, max_col).value > sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value:
-            difference.append(f'Price for {sheet.cell(FIRST_ITEM_ROW + item, DESCRIPTION_COL).value} now is higher. \n'
-                             f'Previous Price {sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value} \n'
-                             f'New Price {sheet.cell(FIRST_ITEM_ROW + item, max_col).value} \n'
-                             f'Link to the Store: {sheet.cell(FIRST_ITEM_ROW + item, URL_COL).value})')
+        if sheet.cell(FIRST_ITEM_ROW + item, max_col-1).value is None:
+            continue
+        else:
+            if sheet.cell(FIRST_ITEM_ROW + item, max_col).value < sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value:
+                difference.append(f'Price for {sheet.cell(FIRST_ITEM_ROW + item, DESCRIPTION_COL).value} now is lower. \n'
+                                 f'Previous Price {sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value} \n'
+                                 f'New Price {sheet.cell(FIRST_ITEM_ROW + item, max_col).value} \n'
+                                 f'Link to the Store: {sheet.cell(FIRST_ITEM_ROW + item, URL_COL).value})')
+            elif sheet.cell(FIRST_ITEM_ROW + item, max_col).value > sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value:
+                difference.append(f'Price for {sheet.cell(FIRST_ITEM_ROW + item, DESCRIPTION_COL).value} now is higher. \n'
+                                 f'Previous Price {sheet.cell(FIRST_ITEM_ROW + item, max_col - 1).value} \n'
+                                 f'New Price {sheet.cell(FIRST_ITEM_ROW + item, max_col).value} \n'
+                                 f'Link to the Store: {sheet.cell(FIRST_ITEM_ROW + item, URL_COL).value})')
     return difference
-

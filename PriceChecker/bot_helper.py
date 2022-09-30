@@ -20,5 +20,3 @@ def bot_check_user(user_id):
 def bot_register(user_id):
     if file_processor.check_user(user_id) == "doesn't exists":
         file_processor.create_user_files(user_id)
-
-print(bot_get_list(748906752))

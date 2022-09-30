@@ -15,7 +15,7 @@ options = Options()
 options.add_argument("--headless")
 options.add_argument("--window-size=1920,1080")
 driver = webdriver.Chrome(DRIVER_PATH, options=options)
-PRICE_LOCATOR = '//div[@class="product-buy__price"]'
+PRICE_LOCATOR = '//div[@class="product-buy__price-wrap product-buy__price-wrap_interactive"]/div[1]'
 DESC_LOCATOR = '//h1[@class="product-card-top__title"]'
 
 
@@ -29,10 +29,10 @@ def dns_get_desc_and_prices(user_id):
     list_of_items = {}
     for item in get_list_of_items(user_id):
         driver.get(item)
-        driver.implicitly_wait(10)
+        driver.implicitly_wait(30)
         price = driver.find_element(By.XPATH, PRICE_LOCATOR)
         desc = driver.find_element(By.XPATH, DESC_LOCATOR)
-        list_of_items[item] = [desc.text, price.text[0:-2]]
+        list_of_items[item] = [desc.text, price.text.split('₽')[0]]
     driver.implicitly_wait(2)
     driver.close()
     return list_of_items
