@@ -53,6 +53,7 @@ def error(update, context):
 
 
 def price_check(update, context):
+    # TO DO - Rework this price_check to auto request every day.
     items = bot_check_price(update.message.chat_id)
     if not items:
         context.bot.send_message(chat_id=update.message.chat_id, text="Prices doesn't changed")
